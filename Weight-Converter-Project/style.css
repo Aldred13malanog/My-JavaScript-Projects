@@ -1,0 +1,38 @@
+body{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-color: #e7e7e7;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+	background-color: #fff;
+	border-radius: 20px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+	text-align: center;
+}
+.container div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+.container div input {
+	padding: 10px;
+	font-size: 16px;
+}
+.container div input:focus {
+	outline: none;
+}
+.space {
+	margin-top: 10px;
+	font-weight: bold;
+}
+.space div {
+	font-size: 18px;
+}

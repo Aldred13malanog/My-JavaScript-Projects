@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Slider</title>
+	<style>
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			height: 97vh;
+			width: 98vw;
+		}
+
+		.title {
+			font-size: 48px;
+			margin: 0;
+		}
+
+		.container {
+			padding: 10px;
+			display: flex;
+			align-items: center;
+		}
+		.card img{
+			height: 400px;
+			width: 400px;
+			object-fit: contain;
+			margin: 0 10px;	
+		}
+		.prev, .next {
+			padding: 10px;
+			background-color: transparent;
+			font-size: 38px;
+			border: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="title">Image Slider</div>
+	<div class="container">
+		<button class="prev js-prev">&#10094</button>
+		<div class="card js-card"></div>
+		<button class="next js-next">&#10095</button>
+	</div>
+
+	<script>
+		const pictures = [
+			'images/Family Picture.jpg',
+			'images/HD wallpaper_ Marvel Iron Man flying illustration, Fan art, Minimal, HD.jpg',
+			'images/download.jpg',
+			'images/343379354_4136831806542686_5492629528132147332_n (2).jpg',
+			'images/358553706_236093159271468_1419446150502681725_n.jpg',
+			'images/Anime One Piece 4k Ultra HD Wallpaper by bt86.jpg',
+			'images/HD wallpaper_ one piece 1920x1080  Anime One Piece HD Art.jpg',
+			'images/HD wallpaper_ white astronaut holding flag on outer space, simple background.jpg'
+		];
+		let index = 0;
+
+		function nextButton() {
+			if (index >= pictures.length - 1) {
+				return;
+			}
+			index++;
+			document.querySelector('.js-card').innerHTML = `<img src="${pictures[index]}">`;
+		}
+
+		function prevButton() {
+			if (index <= 0) {
+				return;
+			}
+			index--;
+			document.querySelector('.js-card').innerHTML = `<img src="${pictures[index]}">`;
+		}
+
+		document.querySelector('.js-card').innerHTML = `<img src="${pictures[0]}">`;
+		document.querySelector('.js-next').addEventListener('click', nextButton);
+		document.querySelector('.js-prev').addEventListener('click', prevButton);
+	</script>
+</body>
+</html>

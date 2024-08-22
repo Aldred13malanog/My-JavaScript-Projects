@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			display: flex;
+			height: 100vh;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="400" height="400"></canvas>
+
+	<script>
+		const canvas = document.getElementById('myCanvas');
+		const ctx = canvas.getContext('2d');
+		ctx.fillStyle = 'black';
+		ctx.fillRect(0, 0 ,400, 400);
+		ctx.fillStyle = 'blue';
+		ctx.fillRect(50, 50, 100, 100); // Draws a	 100x100 blue rectangle at (50, 50)
+		ctx.beginPath(); // Starts a new path
+		ctx.arc(200, 200, 50, 0, Math.PI * 2); // Draws a circle at (200, 200) with a radius of 50
+		ctx.strokeStyle = 'red';
+		ctx.fill(); // Fills the circle drawn by the previous `arc` method
+		ctx.stroke(); // Outlines the circle drawn by the previous `arc` method
+
+
+
+
+		// ctx.fillRect(50, 50, 100, 100);
+
+		// const img = new Image();
+		// img.src = 'Quote-Generator-Project/_Y7A1045.JPG';
+		// img.onload = function() {
+		// 	ctx.drawImage(img, 100, 100);
+		// }
+
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather Design</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			color: white;
+			background: linear-gradient(to bottom, #5426d3, #2500aa, #5426d3);
+			height: 100vh;
+			/* margin-bottom: 1000px; */
+			padding-right: 450px;
+		}
+		header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+
+			padding: 10px 20px;
+			display: flex;
+			text-align: center;
+			align-items: center;
+			background-color: rgba(255, 255, 255, 0.15);
+			backdrop-filter: blur(10px);
+			z-index: 1;
+		}
+		header div {
+			padding: 10px;
+			font-size: 15px;
+			width: 150px;
+			text-align: left;
+			background-color: rgba(255, 255, 255, 0.15);
+			margin-right: 10px;
+			border-radius: 10px;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+		}
+		main {
+			margin-top: 4rem;
+			padding: 10px 20px;
+		}
+		.section1 {
+			display: flex;
+			align-items: center;
+			column-gap: 18px;
+			margin-top: 14px;
+		}
+		.current-weather-container {
+			background-color: rgba(255, 255, 255, 0.15);
+			padding: 10px;
+			min-width: 600px;
+			border-radius: 14px;
+		}
+		.time {
+			color: #e2e2e2;
+			font-size: 12px;
+		}
+		.temp-cloud {
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			padding: 10px 16px;
+			margin-bottom: 14px;
+		}
+		.icon {
+			height: 50px;
+			width: 50px;
+			border-radius: 50%;
+			background-color: #fff021;
+		}
+		.temperature {
+			font-size: 54px;
+			margin-right: 18px;
+		}
+		.sf-con {
+			line-height: 22px;
+		}
+		.sky-status {
+			font-size: 18px;
+		}
+		.feel {
+			color: #e2e2e2;
+			font-size: 14px;
+		}
+		.current-weather-container p {
+			font-size: 15px;
+		}
+		.air-status {
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			/* text-align: center; */
+			justify-content: space-between;
+			margin-top: 16px;
+		}
+		.air-status div {
+			line-height: 20px;
+		}
+		.air-quality, .wind, .humidity, .visibility, .pressure, .dew-point {
+			color: #d6d6d6;
+			font-size: 12px;
+		}
+		.air-status div:nth-child(2) {
+			font-size: 1rem;
+		}
+		.map {
+			height: 250px;
+			width: 250px;
+			background-color: #fff;
+			border-radius: 10px;
+		}
+
+
+		.forecast-header {
+			margin-top: 16px;
+			display: flex;
+			justify-content: space-between;
+		}
+		.forecast-section {
+			margin-top: 16px;
+			display: flex;
+			gap: 10px;
+			overflow-x: scroll;
+			scrollbar-width: none;
+		}				
+		.forecast {
+			padding: 18px;
+			background-color: rgba(255, 255, 255, 0.10);
+			border-radius: 14px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 10px;
+			flex-shrink: 1;
+			/* flex: 0.5; */
+		}
+		.forecast.today {
+			flex-shrink: 0;
+			/* flex: 5; */
+			min-width: 300px;
+		}
+		.forecast-title {
+			align-self: flex-start;
+		}
+		.forecast-temp-cloud {
+			display: flex;
+			line-height: 28px;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.forecast-temp-cloud div:nth-child(2) {
+			text-align: right;
+		}
+		.forecast-temperature {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			margin-left: 10px;
+		}
+		.forecast-icon {
+			height: 35px;
+			width: 35px;
+			background-color: #fff021;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div>Davao-Ag..</div>
+		<div>Tagum</div>
+	</header>
+	<main>
+		<p>Tagum, Davao Region, Philippines</p>
+		<div class="section1">
+			<div class="current-weather-container">
+
+				<div class="title">Current Weather</div>
+				<div class="time">1:38 PM</div>
+				<div class="temp-cloud">
+					<div class="icon"></div>
+					<div class="temperature">33°C</div>
+					<div class="sf-con">
+						<div class="sky-status">Mostly Sunny</div>
+						<div class="feel">Feels like <span>39°C</span></div>
+					</div>
+				</div>
+				<p>There will be mostly sunny skies. The high will reach 33°C on this humid day.</p>
+				<div class="air-status">
+					<div>
+						<div class="air-quality">Air quality</div>
+						<div>24</div>
+					</div>
+					<div>
+						<div class="wind">Wind</div>
+						<div>14 km/h</div>
+					</div>
+					<div>
+						<div class="humidity">Humidity</div>
+						<div>67%</div>
+					</div>
+					<div>
+						<div class="visibility">Visibility</div>
+						<div>10 km</div>
+					</div>
+					<div>
+						<div class="pressure">Presssure</div>
+						<div>1010mb</div>
+					</div>
+					<div>
+						<div class="dew-point">Dew point</div>
+						<div>26°</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="map"></div>
+		</div>
+
+		
+		<div class="forecast-header">
+			<div>Today forecast</div>
+			<div>SEE MONTHLY</div>
+		</div>
+		<div class="forecast-section">
+
+			
+			<div class="forecast today">
+				<div class="forecast-title">Today</div>
+				<div class="forecast-temp-cloud">
+					<div class="forecast-temperature">
+						<div class="forecast-icon"></div>
+						<div>
+							<div>33°C</div>
+							<div>25°C</div>
+						</div>
+					</div>
+					<div>
+						<div>Mostly sunny</div>
+						<div>18%</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="forecast">
+				<div class="forecast-title">Thu 15</div>
+				<div class="forecast-temp-cloud">
+					<div class="forecast-temperature">
+						<div class="forecast-icon"></div>
+						<div>
+							<div>34°C</div>
+							<div>26°C</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="forecast">
+				<div class="forecast-title">Fri 16</div>
+				<div class="forecast-temp-cloud">
+					<div class="forecast-temperature">
+						<div class="forecast-icon"></div>
+						<div>
+							<div>33°C</div>
+							<div>25°C</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="forecast">
+				<div class="forecast-title">Sat 17</div>
+				<div class="forecast-temp-cloud">
+					<div class="forecast-temperature">
+						<div class="forecast-icon"></div>
+						<div>
+							<div>3°C</div>
+							<div>24°C</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="forecast">
+				<div class="forecast-title">Sun 18</div>
+				<div class="forecast-temp-cloud">
+					<div class="forecast-temperature">
+						<div class="forecast-icon"></div>
+						<div>
+							<div>34°C</div>
+							<div>25°C</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="forecast">
+				<div class="forecast-title">Mon 19</div>
+				<div class="forecast-temp-cloud">
+					<div class="forecast-temperature">
+						<div class="forecast-icon"></div>
+						<div>
+							<div>34°C</div>
+							<div>26°C</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="forecast">
+				<div class="forecast-title">Tue 20</div>
+				<div class="forecast-temp-cloud">
+					<div class="forecast-temperature">
+						<div class="forecast-icon"></div>
+						<div>
+							<div>34°C</div>
+							<div>26°C</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="forecast">
+				<div class="forecast-title">Wed 21</div>
+				<div class="forecast-temp-cloud">
+					<div class="forecast-temperature">
+						<div class="forecast-icon"></div>
+						<div>
+							<div>34°C</div>
+							<div>26°C</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</main>
+</body>
+</html>

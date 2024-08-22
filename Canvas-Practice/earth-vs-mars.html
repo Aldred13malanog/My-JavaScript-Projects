@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Earth vs Mars</title>
+	<style>
+		 *{
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			width: 1370px;
+			height: 600px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.container {
+			width: 500px;
+			height: 500px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<canvas id="plane" width="500" height="500"></canvas>
+	</div>
+
+	<script>
+		var plane = document.getElementById('plane');
+		var board = plane.getContext("2d");
+
+		/*
+			Earth: 
+				Speed: 30 km/s
+				Distance: 151M km
+
+			Mars: 
+				Speed: 24 km/s
+				Distance: 212.86M km
+		*/
+
+		var radiusE = 151, radiusM = 212.86;
+
+		var daysE = 365, daysM = 687;
+
+		var thetaE = (3.65 * 2 * Math.PI) / daysE,
+				thetaM = (3.65 * 2 * Math.PI) / daysM;
+
+		var angleE = - Math.PI / 2,
+				angleM = - Math.PI / 2;
+
+		function reset() {
+			board.fillStyle = 'black';
+			board.fillRect(0, 0, 500, 500);
+
+			board.strokeStyle = 'white';
+			board.lineWidth = 2;
+
+			//sun
+			board.fillStyle = 'yellow';
+			board.beginPath();
+			board.arc(250, 250, 20, 0, Math.PI*2);
+			board.fill();
+
+			//mars orbit
+			board.beginPath();
+			board.arc(250, 250, radiusM, 0, Math.PI*2);
+			board.stroke();
+
+			//earth orbit
+			board.beginPath();
+			board.arc(250, 250, radiusE, 0, Math.PI*2);
+			board.stroke();
+
+			board.lineWidth = 1;
+			board.strokeStyle = '#eeeeee';
+
+			setInterval(revolve, 25);
+		}
+
+		function revolve() {
+			var x1 = 250 + radiusE * Math.cos(angleE),
+					y1 = 250 + radiusE * Math.sin(angleE);
+
+			var x2 = 250 + radiusM * Math.cos(angleM),
+					y2 = 250 + radiusM * Math.sin(angleM);
+
+			board.beginPath();
+			board.moveTo(x1, y1);
+			board.lineTo(x2, y2);
+			board.stroke();
+
+			angleE += thetaE;
+			angleM += thetaM;
+		}
+		reset();
+
+	</script>
+</body>
+</html>

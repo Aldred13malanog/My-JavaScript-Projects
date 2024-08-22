@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Arrays and Loops</title>
+	<style>
+		*{
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			font-size: 1.5rem;
+			font-family: Arial, Helvetica, sans-serif;
+			padding: 20px 50px;
+			background-color: #0e0e0e;
+			color: #f1f1f1;
+		}
+		section {
+			margin-bottom: 10px;
+		}
+		h3 {
+			font-size: 2rem;
+			margin-bottom: 10px;
+		}
+		p {
+			margin-bottom: 10px;
+		}
+		.challenge-ex {
+			border: 1px solid black;
+			padding: 0 20px;
+		}
+		.sol {
+			margin-left: 2rem;
+			text-decoration: underline;
+			color: #0150e4;
+			cursor: pointer;
+			margin-bottom: 10px;
+		}
+		pre {
+			display: none;
+			white-space: pre-wrap;
+			font-family: monospace;
+			font-size: 1.4rem;
+			background-color: #242424;
+			padding: 10px 20px;
+			border-left: 5px solid #0150e4;
+			margin-bottom: 10px;
+			margin-left: 2rem;
+		}
+		span {
+			color: green;
+		}
+		.active {
+			display: block;
+		}
+		.inactive {
+			display: none;
+		}
+		
+	</style>
+</head>
+<body>
+	<h3>Arrays and Loops Exercises</h3>
+	<section>
+	<p>
+		1. Create an array of numbers: const nums = [10, 20, 30]; Modify the last value in this array and change it to 99.
+	</p>
+	<div class="sol">Click here to see the solution</div>
+<pre>
+const nums = [10, 20, 30];
+nums[2] = 99;
+console.log(nums); <span>// Output: [10, 20, 99]</span>
+</pre>
+  </section>
+
+  <section>
+		<p>
+			2. Create a function getLastValue(array) that takes an array and returns the last value in the array. Hint: array indexes start at 0 so the last index is the number of values in the array minus 1.
+			<ul>
+				<li>
+					getLastValue([1, 20, 22, 24, 5]) => 5
+				</li>
+				<li>
+					getLastValue(['hi', 'hello', 'good']) => 'good'
+				</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function getLastValue(array) { 
+  const lastIndex = array.length - 1;
+  return array[lastIndex];  
+}
+
+<span>// Shortcut</span>
+function getLastValue(array) {
+  return array[array.length - 1];
+}
+
+console.log(getLastValue([1, 20, 22, 24, 5])); <span>// Output: 5</span>
+console.log(getLastValue(['hi', 'hello', 'good'])); <span>// Output: 'good'</span>
+</pre>
+  </section>
+
+  <section>
+		<p>
+			3. Create a function arraySwap(array) that takes an array and returns an array where the first and last values are swapped (or switched).
+			<ul>
+				<li>
+					arraySwap([1, 20, 22, 24, 5]) => [5, 20, 22, 24, 1]
+				</li>
+				<li>
+					arraySwap(['hi', 'hello', 'good']) => ['good', 'hello', 'hi']
+				</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function arraySwap(array) {
+  const lastIndex = array.length - 1;
+  const lastValue = array[lastIndex];
+  const firstValue = array[0];
+
+  array[0] = lastValue;	
+  array[lastIndex] = firstValue;
+
+  return array;
+}
+
+<span>// possible shortcut but mess</span>
+function arraySwap(array) {
+  const firstValue = array[0];	
+  array[0] = array[array.length - 1];	
+  array[array.length - 1] = firstValue;	
+  return array;	
+}
+console.log(arraySwap([1, 20, 22, 24, 5])); <span>// Output: [5, 20, 22, 24, 1]</span>
+console.log(arraySwap(['hi', 'hello', 'good'])); <span>// Output: ['good', 'hello', 'hi']</span>
+</pre>
+  </section>
+
+	<section>
+		<p>
+			4. Create a for loop that counts up from 0 to 10, but counts up by 2 (0, 2, ..., 10).
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+for(let i = 0; i <= 10; i+=2) {
+  console.log(i);
+}
+</pre>
+	</section>
+
+	<section>
+		<p>
+			5. Create a for loop that counts down from 5 to 0.
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+for(let i = 5; i >= 0; i--) {
+  console.log(i);
+}
+</pre>
+	</section>
+
+	<section>
+		<p>6. Do exercises in #4 and #5, but using while loops.</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+let i = 0;
+while (i <= 10) {
+  console.log(i);
+  i+=2;
+}
+
+let i2 = 5;
+while (i2 >= 0) {
+  console.log(i2);
+  i2--;
+}
+</pre>
+	</section>
+
+	<section>
+		<p>
+			7. Create a loop that takes an array of numbers and creates a new array where each number is increased by 1.
+			<ul>
+				<li>[1, 2, 3] => [2, 3, 4]</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+const array = [1, 2, 3];
+let result = [];
+for (let i = 0; i < array.length; i++) {
+  result.push(array[i] + 1);
+}
+console.log(result); <span>// Output: [2, 3, 4]</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			8. Create a function addOne(array) that takes an array of numbers and returns an array where each number is increased by 1.
+			<ul>
+				<li>addOne([1, 2, 3]) => [2, 3, 4]</li>
+				<li>addOne([-2, -1, 0, 99]) => [-1, 0, 1, 100]</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function addOne(array) {
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    result.push(array[i] + 1);
+  }
+  return result;
+}
+console.log(addOne([1, 2, 3])); <span>// Output: [2, 3, 4]</span>
+console.log(addOne([-2, -1, 0, 99])); <span>// Output: [-1, 0, 1, 100]</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			9. Create a function addNum(array, num) that takes an array of numbers and returns an array where each number is increased by 'num'.
+			<ul>
+				<li>addNum([1, 2, 3], 2) => [3, 4, 5]</li>
+				<li>addNum([1, 2, 3], 3) => [4, 5, 6]</li>
+				<li>addNum([-2, -1, 0, 99], 2) => [0, 1, 2, 101]</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function addNum(array, num) {
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    result.push(array[i] + num);				
+  }
+  return result;
+}
+console.log(addNum([1, 2, 3], 2)); <span>// Output: [3, 4, 5]</span>
+console.log(addNum([1, 2, 3], 3)); <span>// Output: [4, 5, 6]</span>
+console.log(addNum([-2, -1, 0, 99], 2)); <span>// Output: [0, 1, 2, 101]</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			10. Create a function addArrays(array1, array2) that takes 2 arrays of numbers and adds each number in the arrays together.
+
+			<ul>
+				<li>addArrays([1, 1, 2], [1, 1, 3]) => [2, 2, 5]</li>
+				<li>addArrays([1, 2, 3], [4, 5, 6]) => [5, 7, 9]</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function addArrays(array1, array2) {
+  let result = [];
+  for (let i = 0; i < array1.length; i++) {
+    result.push(array1[i] + array2[i]);
+  }
+  return result;
+}
+console.log(addArrays([1, 1, 2], [1, 1, 3])); <span>// Output: [2, 2, 5]</span>
+console.log(addArrays([1, 2, 3], [4, 5, 6])); <span>// Output: [5, 7, 9]</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			11. Create a function countPositive(nums) that takes an array of numbers and returns how many numbers in the array are greater than 0.
+			<ul>
+				<li>countPositive([1, -3, 5]) => 2</li>
+				<li>countPositive([-2, 3, -5, 7, 10]) => 3</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function countPositive(nums) {
+  let result = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > 0) {
+    result++;
+    }				
+  }
+  return result;
+}
+console.log(countPositive([1, -3, 5])); <span>// Output: 2</span>
+console.log(countPositive([-2, 3, -5, 7, 10])); <span>// Output: 3</span>
+</pre>
+	</section>
+
+	<section>
+		<div class="challenge-ex">
+			<h3><u>Challenge Exercises</u></h3>
+			<p>
+				12. Create a function minMax(nums) that takes an array of numbers and returns an object with the minimum and maximum numbers in the array (do this using a loop instead of using something like Math.min).
+				<ul>
+					<li>minMax([1, -3, 5]) => {min: -3, max: 5}</li>
+					<li>minMax([-2, 3, -5, 7, 10]) => {min: -5, max:10}</li>
+				</ul>
+			</p>
+			<div class="sol">Click here to see the solution</div>
+<pre>
+function minMax(nums) {
+  const result = {
+    min: 0,
+    max: 0
+  }
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > result.max) {
+      result.max = nums[i];
+    }
+    if (nums[i] < result.min) {
+      result.min = nums[i]
+    }
+  }
+}
+console.log(minMax([1, -3, 5])); <span>// Output: { min: -3, max: 5 }</span>
+console.log(minMax([-2, 3, -5, 7, 10])); <span>// Output: { min: -5, max: 10 }</span>
+</pre>
+
+			<p>
+				13. Update exercise #12 to also handle these cases:
+				<ul>
+					<li>minMax([]) => {min: null, max: null}</li>
+					<li>minMax([3]) => {min: 3, max: 3}</li>
+				</ul>
+			</p>
+			<div class="sol">Click here to see the solution</div>
+<pre>
+function minMax(nums) {
+  const result = {
+    min: null,
+    max: null
+  }
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > result.max || result.max == null) {
+      result.max = nums[i];
+    }
+    if (nums[i] < result.min || result.min == null) {
+      result.min = nums[i]
+    }
+  }
+  return result;
+}
+console.log(minMax([])); <span>// Output: { min: null, max: null }</span>
+console.log(minMax([3])); <span>// Output: { min: 3, max: 3 }</span>
+</pre>
+
+			<p>
+				14. Create a function countWords(words) that takes an array of strings and returns an object with how many times each string appeared.
+				<ul>
+					<li>countWords(['apple', 'grape', 'apple', 'apple']) => {apple: 3, grape: 1}</li>
+				</ul>
+				(Hint: you can access a property using a variable: object[variable]; This uses the value inside the variables as the property name.)
+			</p>
+			<div class="sol">Click here to see the solution</div>
+<pre>
+function countWords(words) {
+  const result = {
+    apple: 0,
+    grape: 0
+  }
+  for (let i = 0; i < words.length; i++) {
+    if (words[i] === 'apple') {
+      result.apple++;
+    }
+    if (words[i] === 'grape') {
+      result.grape++;
+    }
+  }
+  return result;
+}
+
+<span>// Alternate solution using the hint</span>
+function countWords(words) {
+  const result = {}
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    if (!result[word]) {
+      result[word] = 1;
+    } else {
+      result[word]++;
+    }
+  }
+  return result;
+}
+console.log(countWords(['apple', 'grape', 'apple', 'apple'])); <span>// Output: {apple: 3, grape: 1}</span>
+</pre>
+		</div>
+	</section>
+
+	<section>
+		<p>
+			15. Create an array of strings, loop over the array, and check if the string 'search' is inside the array. If it is, console.log() the index of 'search' in the array. If not, console.log '-1'.
+			<ul>
+				<li>['hello', 'world', 'search', 'good'] => console.log(2)</li>
+				<li>['not', 'found'] => console.log(-1)</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+const array1 = ['hello', 'world', 'search', 'good'];
+const array2 = ['not', 'found'];
+let index = -1;
+for (let i = 0; i < array1.length; i++) {
+  if (array1[i] === 'search') {
+    index = i;
+  }
+}
+console.log(index); <span>// Output: 2</span>
+index = -1;
+for (let i = 0; i < array2.length; i++) {
+  if (array2[i] === 'search') {
+    index = i;
+  } 
+}
+console.log(index); <span>// Output: -1</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			16. Modify #15 so that if 'search' appears multiple times in the array, it will console.log() the index of the <u>first</u> appearance of 'search'. Use break;
+			<ul>
+				<li>['hello', 'world', 'search', 'good', 'search'] => console.log(2)</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+const array3 = ['hello', 'world', 'search', 'good', 'search'];
+let index1 = -1;
+for (let i = 0; i < array3.length; i++) {
+  if (array3[i] === 'search') {
+    index1 = i;
+    break;
+  }
+}
+console.log(index1); <span>// Output: 2</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			17. Create a function findIndex(array, word) that searches an array for a string (in the 'word' parameter) and returns the index of the <u>first</u> appearance of the string. If it doesn't exist in the array, return -1.
+			<ul>
+				<li>findIndex(['green', 'red', 'blue', 'red'], 'red') => 1</li>
+				<li>findIndex(['green', 'red', 'blue', red], 'yellow') => -1</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function findIndex(array, word) {
+  let index = -1;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === word) {
+      index = i;
+       break;
+    }				
+  }
+  return index;
+}
+
+<span>// Shortcut</span>
+function findIndex(array, word) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === word) {
+      return i;
+    }
+  }
+  return -1;
+}
+console.log(findIndex(['green', 'red', 'blue', 'red'], 'red')); <span>// Output: 1</span>
+console.log(findIndex(['green', 'red', 'blue', 'red'], 'yellow')); <span>// Output: -1</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			18. Create a function removeEgg(foods) that takes an array of strings and returns an array where the string 'egg' is removed. (Hint: loop through the array and check if each string is 'egg'. If it is 'egg', use 'continue;', to skip it. If it's not 'egg', add it to the result).
+			<ul>
+				<li>removeEgg(['egg', 'apple', 'egg', 'egg', 'ham']) => ['apple', 'ham']</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function removeEgg(foods) {
+  let result = [];
+  for (let i = 0; i < foods.length; i++) {
+    if (foods[i] !== 'egg') {
+      result.push(foods[i])
+    }
+  }
+  return result;
+}
+console.log(removeEgg(['egg', 'apple', 'egg','egg', 'ham'])); <span>// Output: ['apple', 'ham']</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			19. Update exercise #18 to only remove the <u>first</u> 2 eggs from the array.
+			<ul>
+				<li>removeEgg(['egg', 'apple', 'egg', 'egg', 'ham']) => ['apple', 'egg','ham']</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function removeEgg(foods) {
+  let result = [];
+  let eggRemoved = 0;
+  for (let i = 0; i < foods.length; i++) {
+    if (foods[i] === 'egg' && eggRemoved < 2) {
+      eggRemoved++;
+      continue;
+    } else {
+      result.push(foods[i]);
+    }
+  }
+  return result;
+}
+console.log(removeEgg(['egg', 'apple', 'egg','egg', 'ham'])); <span>// Output: ['apple', 'egg','ham']</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			20. Arrays have a method called .reverse(), which reverses the order of the values in the array. Using .reverse(), update exercises #19. to only remove the <u>last</u> 2 eggs from the array.
+			<ul>
+				<li>removeEgg(['egg', 'apple', 'egg', 'egg', 'ham']) => ['egg', 'apple', 'ham']</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function removeEgg(foods) {
+  let result = [];
+  let reversedFoods = foods.reverse();
+  let eggRemoved = 0;
+  for (let i = 0; i < reversedFoods.length; i++) {
+    if (reversedFoods[i] === 'egg' && eggRemoved < 2) {
+      eggRemoved++;
+      continue;
+    } else {
+      result.push(foods[i]);
+    }
+  }
+  return result.reverse();
+}
+console.log(removeEgg(['egg', 'apple', 'egg','egg', 'ham'])); <span>// Output: ['egg', 'apple', 'ham']</span>
+</pre>
+	</section>
+
+	<section>
+		<p>
+			21. In exercise #20, one problem with .reverse() is that it doesn't create a copy of the array it is reversing. It modifies the original array. Update the code so the function <u>does not</u> modify the original array. (Hint: use the .slice() method to create a copy of an array's values).
+			<ul>
+				<li>const foods = ['egg', 'apple', 'egg', 'egg', 'ham']</li>
+				<li>console.log(removeEgg(foods)) => ['egg', 'apple', 'ham']</li>
+				<li>console.log(foods) => ['egg', 'apple', 'egg', 'egg', 'ham']</li>
+			</ul>
+		</p>
+		<div class="sol">Click here to see the solution</div>
+<pre>
+function removeEgg3(foods) {
+  const result = [];
+  const foodsCopy = foods.slice();
+  let reversedFoods = foodsCopy.reverse();
+  let eggRemoved = 0;
+  for (let i = 0; i < reversedFoods.length; i++) {
+    if (reversedFoods[i] === 'egg' && eggRemoved < 2) {
+      eggRemoved++;
+      continue;
+    } else {
+      result.push(reversedFoods[i]);
+    }
+  }
+  return result.reverse();
+}
+const foods = ['egg', 'apple', 'egg','egg', 'ham'];
+console.log(removeEgg3(foods)); <span>// Output: ['egg', 'apple', 'ham']</span>
+console.log(foods); <span>// Output: ['egg', 'apple', 'egg', 'egg', 'ham']</span>
+</pre>
+	</section>
+
+	<section>
+		<div class="challenge-ex">
+			<h3><u>Challenge Exercises</u></h3>
+			<p>
+				22. We'll do the famous FizzBuzz problem. Create a loop that displays 1 to 20 in the console. If the number is divisible by 3, display 'Fizz' instead of the number. If it's divisible by 5, display 'Buzz' instead. If it's divisible by 3 and 5, display 'FizzBuzz' instead. (Reminder: divisible by 3 means num % 3 === 0).
+				<ul>
+					<li>1, 2, Fizz, 4, Buzz, 7, 8, ... 13, 14, FizzBuzz, 16, 17...</li>
+				</ul>
+			</p>
+			<div class="sol">Click here to see the solution</div>
+<pre>
+for (let i = 1; i <= 20; i++) {
+  if (i % 3 === 0 && i % 5 === 0) {
+    console.log('FizzBuzz');
+  } else if (i % 5 === 0) {
+    console.log('Buzz');
+  } else if (i % 3 === 0) {
+    console.log('Fizz');
+  } else {
+    console.log(i);
+  }
+}
+</pre>
+
+			<p>
+				23. Create a copy of exercise #22. where we created findIndex(). Below it, create a function unique(array) that takes an array of strings and returns an array where each string only appears once (there are no duplicates.) Try to use the findIndex() function in your solution.
+				<ul>
+					<li>unique(['green', 'red', 'blue', 'red']) => ['green', 'red', 'blue']</li>
+					<li>unique(['red', 'green', 'green', 'red']) => ['red', 'green']</li>
+				</ul>
+			</p>
+   		<div class="sol">Click here to see the solution</div>
+<pre>
+<span>// Code from #17</span>
+function findIndex(array, word) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === word) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+function unique(array) {
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    const word = array[i];
+    if (findIndex(result, word) === -1) {
+      result.push(word);
+    }
+  }
+  return result;
+}
+console.log(unique(['green', 'red', 'blue', 'red'])); <span>// Output: ['green', 'red', 'blue']</span>
+console.log(unique(['red', 'green', 'green', 'red'])); <span>// Output: ['red', 'green']</span>
+</pre>
+		</div>
+	</section>
+
+
+	<script>
+		const solution = document.querySelectorAll('.sol');
+		const answer = document.querySelectorAll('pre');
+		solution.forEach((sol, i) => {
+			sol.addEventListener('click', () => {
+				answer[i].classList.add('active');
+				sol.classList.add('inactive');
+			})
+		});
+	</script>
+</body>
+</html>

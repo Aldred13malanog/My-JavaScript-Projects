@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Earth vs Venus Revolution</title>
+	<style>
+		 *{
+			padding: 0;
+			margin: 0;
+		}
+		.container {
+			width: 100vw;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<canvas id="plane" width="400" height="400"></canvas>
+	</div>
+
+	<script>
+		var plane = document.getElementById('plane');
+		var board = plane.getContext("2d");
+
+		/*
+			Venus:
+				Speed: 35 km/s
+				Distance: 108 km
+
+			Earth: 
+				Speed: 30 km/s
+				Distance: 151 km
+		*/
+
+		var radiusE = 151, radiusV = 108;
+
+		var daysE = 365, daysV = 225;
+
+		var thetaE = (3.65 * 2 * Math.PI) / daysE,
+				thetaV = (3.65 * 2 * Math.PI) / daysV;
+
+		var angleE = - Math.PI / 2,
+				angleV = - Math.PI / 2;
+
+		function reset() {
+			board.fillStyle = 'black';
+			board.fillRect(0, 0, 400, 400);
+
+			board.strokeStyle = 'white';
+			board.lineWidth = 2;
+
+			//sun
+			board.fillStyle = 'yellow';
+			board.beginPath();
+			board.arc(200, 200, 20, 0, Math.PI*2);
+			board.fill();
+
+			//venus orbit
+			board.beginPath();
+			board.arc(200, 200, radiusV, 0, Math.PI*2);
+			board.stroke();
+
+			//earth orbit
+			board.beginPath();
+			board.arc(200, 200, radiusE, 0, Math.PI*2);
+			board.stroke();
+
+			board.lineWidth = 1;
+			board.strokeStyle = '#eeeeee';
+
+			setInterval(revolve, 25);
+		}
+
+		function revolve() {
+			var x1 = 200 + radiusE * Math.cos(angleE),
+					y1 = 200 + radiusE * Math.sin(angleE);
+
+			var x2 = 200 + radiusV * Math.cos(angleV),
+					y2 = 200 + radiusV * Math.sin(angleV);
+
+			board.beginPath();
+			board.strokeStyle = '#eeeeee';
+			board.moveTo(x1, y1);
+			board.lineTo(x2, y2);
+			board.stroke();
+
+			angleE += thetaE;
+			angleV += thetaV;
+		}
+		reset();
+
+	</script>
+</body>
+</html>

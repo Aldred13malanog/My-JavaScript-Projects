@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calculator</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			height: 100vh;
+			width: 100vw;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.container {
+			background-color: rgb(32, 32, 32);
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+		}
+		.inp {
+			height: 60px;
+			width: 322px;
+			font-size: 24px;
+			margin-bottom: 10px;
+			border: none;
+			background-color: transparent;
+			color: white;
+			text-align: right;
+		}
+		.inp:focus {
+			border: none;
+			outline: none;
+		}
+		.button-container {
+			display: grid;
+			grid-template-columns: repeat(4, 80px);
+			column-gap: 2px;
+			row-gap: 2px;
+		}
+		.numbers, .operator, .equal, .sign,
+		.c, .ac {
+			padding: 10px 0;
+			border-radius: 4px;
+			border: none;
+			font-size: 20px;
+			background-color: rgb(60, 60, 60);
+			color: white;
+			cursor: pointer;
+			transition: all 0.1s;
+		}
+		.numbers:hover, .ac:hover, .c:hover {
+			background-color: rgb(49, 49, 49);
+		}
+		.numbers:active, .ac:active, .c:active {
+			background-color: rgb(40, 40, 40);
+		}
+
+		.operator {
+			background-color:  rgb(49, 49, 49);
+		}
+		.operator:hover {
+			background-color: rgb(60, 60, 60);
+		}
+		.operator:active {
+			background-color: rgb(49, 49, 49);
+		}
+		.equal {
+			color: black;
+			background-color: #5bc1d3;
+			font-size: 24px;	
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: 100;		
+		}
+		.equal:hover {
+			background-color: rgba(91, 193, 211, 0.911);
+		}
+		.equal:active {
+			background-color: rgba(91, 193, 211, 0.795);
+		}
+	</style>
+
+</head>
+<body>
+	<div class="container">
+		<input class="inp">
+		<div class="button-container">
+			<button class="numbers">7</button>
+			<button class="numbers">8</button>
+			<button class="numbers">9</button>
+			<button class="operator">/</button>
+
+			<button class="numbers">4</button>
+			<button class="numbers">5</button>
+			<button class="numbers">6</button>
+			<button class="operator">*</button>
+
+			<button class="numbers">1</button>
+			<button class="numbers">2</button>
+			<button class="numbers">3</button>
+			<button class="operator">-</button>
+
+			<button class="sign">+/-</button>
+			<button class="numbers">0</button>
+			<button class="numbers">.</button>
+			<button class="operator">+</button>
+
+			<button class="c">C</button>
+			<button class="ac">AC</button>
+			<button class="equal">=</button>
+		</div>
+	</div>
+
+	<script>
+		// Pendings
+			/*
+				// 1. Error handling 
+				2. The C button
+				3. modify codes
+			*/
+
+		const nums = document.querySelectorAll('.numbers');
+		const opers = document.querySelectorAll('.operator');
+		let input = document.querySelector('.inp');
+		let operations = ['+', '-', '*', '/'];
+		let result = false;
+
+		function num() {
+			const inp = input.value;
+			const lastI = inp.length - 1;
+
+			if (result) {
+				for (let i = 0; i < operations.length; i++) {
+					if (inp[lastI].includes(operations[i])) {
+						input.value += this.innerHTML;
+						result = false;
+						return;
+					}
+				}
+				input.value = '';
+			}
+			
+			input.value += this.innerHTML;
+			result = false;
+		}
+
+		function operF() {
+			const inp = input.value;
+			const lastI = inp.length -1;
+			if (!input.value) {
+				return;
+			}
+
+			for (let i = 0; i < operations.length; i++) {
+				if (inp[lastI].includes(operations[i])) {
+					return;
+				}
+			}			
+			input.value += this.innerHTML;
+		}
+
+		function total() {
+			const inp = input.value;
+
+			if (!input.value) {
+				return;
+			}
+
+			try {
+				const ans = eval(inp);
+				input.value = ans;
+				result = true;
+			} catch (error) {
+				input.value = 'Math Error';
+				result = true;
+			}
+		}
+
+		function clear() {
+			input.value = '';
+			result = false;
+		}
+
+		nums.forEach((numb) => {
+			numb.addEventListener('click', num);
+		});
+
+		opers.forEach((oper) => {
+			oper.addEventListener('click', operF);
+		});
+
+		document.querySelector('.equal').addEventListener('click', total);
+		document.querySelector('.ac').addEventListener('click', clear);
+		// document.querySelector('.c').addEventListener('click', del);
+	</script>
+</body>
+</html>

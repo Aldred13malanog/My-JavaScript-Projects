@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather App</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			/* box-sizing: border-box; */
+		}
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+		main {
+			height: 90%;
+			background: linear-gradient(to bottom, #4ba3e2, #1a6cd1);
+			width: 300px;
+			border-radius: 20px;
+			padding: 20px;
+			overflow-y: scroll;
+			/* overflow-y: hidden; */
+			position: relative;
+		}
+		/* main::--webkit-scrollbar {
+			display: none;
+		} */
+		main {
+			/* -ms-overflow-style: none; */
+			scrollbar-width: none;
+		}
+		
+		nav {
+			position: fixed;
+			font-size: 22px;
+
+			color: white;
+			background-color: #489cd8;
+			left: 50%;
+			top: 6.4%;
+			transform: translate(-50%, -50%);
+			padding: 16px;
+			width: 308px;
+			border-top-left-radius: 20px;
+			border-top-right-radius: 20px;
+			z-index: 0;
+		}
+		.temp {
+			margin-top: 36px;
+			height: 300px;
+			font-size: 64px;
+			font-weight: 200;
+			color: white;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+		.clouds {
+			font-size: 20px;
+		}
+		.weather-hour {
+			display: flex;
+			overflow-x: scroll;
+			margin-bottom: 10px;
+		}
+		.weather-hour {
+			scrollbar-width: none;
+		}
+		.hour {
+			height: 50px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			margin-right: 10px;
+			font-size: 15px;
+			color: white;
+			font-size: 14px;
+		}
+		.future-weather {
+			background-color: #5c9ee080;
+			backdrop-filter: blur(10px);
+			font-size: 14px;
+			color: white;
+			border-radius: 20px;
+			padding: 10px;
+			margin-bottom: 10px;
+		}
+		.future-weather > div {
+			display: grid;
+			margin-bottom: 10px;
+			grid-template-columns: repeat(5, 20%);
+			text-align: center;
+		}
+		.future-weather > div:nth-child(8) {
+			margin-bottom: 0;
+		}
+
+		.details {
+			background-color: rgba(255, 255, 255, 0.15);
+			color: white;
+			border-radius: 20px;
+			padding: 14px;
+		}
+		.astronomy {
+			display: flex;
+			margin-top: 10px;
+			justify-content: space-between;
+			margin-bottom: 4px;
+			height: 50px;
+			align-items: center;
+		}
+
+		.wind{
+			margin-top: 10px;
+			display: flex;
+			font-size: 14px;
+			text-align: center;
+			/* background-color: black; */
+			justify-content: space-between;
+		}
+		.des {
+			color: #dbdbdb;
+			font-size: 12px;
+		}
+	</style>
+</head>
+<body>
+  <main>
+		<nav>
+			<div class="city-name">Tagum</div>
+		</nav>
+		<div class="temp">
+			<div>31°C</div>
+			<div class="clouds">Cloudy</div>
+		</div>
+		<div class="weather-hour">
+			<div class="hour">
+				<div>19:00</div>
+				<div>29°C</div>
+			</div>
+			<div class="hour">
+				<div>20:00</div>
+				<div>28°C</div>
+			</div>
+			<div class="hour">
+				<div>21:00</div>
+				<div>27°C</div>
+			</div>
+			<div class="hour">
+				<div>22:00</div>
+				<div>27°C</div>
+			</div>
+			<div class="hour">
+				<div>23:00</div>
+				<div>26°C</div>
+			</div>
+			<div class="hour">
+				<div>00:00</div>
+				<div>26°C</div>
+			</div>
+			<div class="hour">
+				<div>01:00</div>
+				<div>26°C</div>
+			</div>
+			<div class="hour">
+				<div>02:00</div>
+				<div>25°C</div>
+			</div>
+			<div class="hour">
+				<div>03:00</div>
+				<div>25°C</div>
+			</div>
+		</div>
+
+		<div class="future-weather">
+			<div>
+				<div>08/14</div>
+				<div>TDY</div>
+				<div>icon</div>
+				<div>34</div>
+				<div>23</div>
+			</div>
+			<div>
+				<div>08/15</div>
+				<div>TMR</div>
+				<div>icon</div>
+				<div>34</div>
+				<div>23</div>
+			</div>
+			<div>
+				<div>08/16</div>
+				<div>Fri</div>
+				<div>icon</div>
+				<div>33</div>
+				<div>23</div>
+			</div>
+			<div>
+				<div>08/17</div>
+				<div>Sat</div>
+				<div>icon</div>
+				<div>35</div>
+				<div>23</div>
+			</div>
+			<div>
+				<div>08/18</div>
+				<div>Sun</div>
+				<div>icon</div>
+				<div>34</div>
+				<div>24</div>
+			</div>
+			<div>
+				<div>08/19</div>
+				<div>Mon</div>
+				<div>icon</div>
+				<div>34</div>
+				<div>23</div>
+			</div>
+			<div>
+				<div>08/20</div>
+				<div>Tue</div>
+				<div>icon</div>
+				<div>35</div>
+				<div>21</div>
+			</div>
+			<div>
+				<div>08/21</div>
+				<div>Wed</div>
+				<div>icon</div>
+				<div>35</div>
+				<div>20</div>
+			</div>
+		</div>
+
+		<div class="details">
+			<div>Details</div>
+			<div class="astronomy">
+				<div>5:30</div>
+				<div>17:52</div>
+			</div>
+			<hr>
+			<div class="wind">
+				<div>
+					<div>38°C</div>
+					<div class="des">Feels Like</div>
+				</div>
+				<div>
+					<div>68%</div>
+					<div class="des">Humidity</div>
+				</div>
+				<div>
+					<div>Force 3</div>
+					<div class="des">SSW</div>
+				</div>
+				<div>
+					<div>1010 hPa</div>
+					<div class="des">Pressure</div>
+				</div>
+				
+			</div>
+		</div>
+	</main>
+</body>
+</html>

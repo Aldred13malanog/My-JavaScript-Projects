@@ -1,0 +1,54 @@
+body {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #e0e0e0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+	background-color: #fff;
+	border-radius: 20px;
+	padding: 20px;
+	text-align: center;
+}
+
+.container .time {
+	font-size: 48px;
+	margin-bottom: 60px;
+}
+.container .start-btn {
+	background-color: #01b801;
+	border: none;
+	padding: 10px 20px;
+	color: white;
+	border-radius: 6px;
+	margin-right: 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.container .stop-btn {
+	background-color: #d10000;
+	border: none;
+	padding: 10px 20px;
+	color: white;
+	border-radius: 6px;
+	margin-right: 10px;
+	font-size: 16px;
+	cursor: pointer;
+
+}
+
+.container .reset-btn {
+	background-color: gray;
+	border: none;
+	padding: 10px 20px;
+	color: white;
+	border-radius: 6px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.start-btn:focus, .stop-btn:focus, .reset-btn:focus {
+	outline: none;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Slider v2</title>
+	<style>
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			height: 97vh;
+			width: 98vw;
+			font-family: Arial, Helvetica, sans-serif;
+			background-color: #ebebeb;
+		}
+		.title {
+			font-size: 42px;
+		}
+		.container{
+			width: 400px;
+			overflow-x: scroll;
+			display: flex;
+			overflow-y: hidden;
+			column-gap: 10px;
+			scrollbar-width: none;
+			scroll-snap-type: x mandatory;
+		}
+		.img {
+			scroll-snap-align: center;
+			width: 400px;	
+			height: 400px;
+			object-fit: contain;
+		}
+	</style>
+</head>
+<body>
+
+
+	<div class="title">Image Slider v2</div>
+	<div class="container">
+		<img class="img" src="images/343379354_4136831806542686_5492629528132147332_n (2).jpg">
+		<img class="img" src="images/Anime One Piece 4k Ultra HD Wallpaper by bt86.jpg">
+		<img class="img" src="images/download.jpg">
+		<img class="img" src="images/Family Picture.jpg">
+		<img class="img" src="images/HD wallpaper_ Marvel Iron Man flying illustration, Fan art, Minimal, HD.jpg">
+		<img class="img" src="images/HD wallpaper_ one piece 1920x1080  Anime One Piece HD Art.jpg">
+		<img class="img" src="images/358553706_236093159271468_1419446150502681725_n.jpg">
+		<img class="img" src="images/HD wallpaper_ white astronaut holding flag on outer space, simple background.jpg">		
+
+	</div>
+</body>
+</html>

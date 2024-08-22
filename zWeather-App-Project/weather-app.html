@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather Weather Lang</title>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			background-color: #f0f0f0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			margin: 0;
+		}
+		.container {
+			text-align: center;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			max-width: 500px;
+			width: 100%;
+		}
+		.input {
+			padding: 10px;
+			border: 1px solid black;
+		}
+		.input:focus {
+			outline: none;
+		}
+		.submit {
+			background-color: #0b99ec;
+			border: none;
+			padding: 11px 20px;
+			color: white;
+			transition: all .3s ease;
+			cursor: pointer;
+		}
+		.submit:hover {
+			background-color: rgb(0, 119, 255);
+		}
+		.submit:active {
+			background-color: blue;
+		}
+		.info {
+			margin-top: 10px;
+			text-align: left;
+			line-height: 28px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<h2>Weather App</h2>
+		<input type="text" class="input" placeholder="Enter Location">
+		<button class="submit">Enter</button>
+		<div class="info">
+			<div>Location: "London"</div>
+			<div>Region: "City of London, Greater London"</div>
+			<div>Country: "United Kingdom"</div>
+			<div>Temperature: 17.2°C</div>
+			<div>Feels like: 17.2°C</div>
+			<div>Localtime: "2024-08-14 06:08"</div>
+			<div>Wind_kph: 6.8</div>
+			<div>Heatindex: 18.9°C</div>
+			<div>Sunrise: "05:45 AM"</div>
+			<div>Sunset: "08:24 PM"</div>
+			<div>Moonrise: "05:07 PM"</div>
+			<div>Moonset: "11:49 PM"</div>
+			<div>Moon_phase: "Waxing Gibbous"</div>
+			<div>Humidity: 94</div>
+		</div>
+	</div>
+
+	<script type="module">
+		//current json
+// 		{
+//     "location": {
+//         "name": "London",
+//         "region": "City of London, Greater London",
+//         "country": "United Kingdom",
+//         "lat": 51.52,
+//         "lon": -0.11,
+//         "tz_id": "Europe/London",
+//         "localtime_epoch": 1723612108,
+//         "localtime": "2024-08-14 06:08"
+//     },
+//     "current": {
+//         "last_updated_epoch": 1723611600,
+//         "last_updated": "2024-08-14 06:00",
+//         "temp_c": 17.2,
+//         "temp_f": 63.0,
+//         "is_day": 1,
+//         "condition": {
+//             "text": "Partly cloudy",
+//             "icon": "//cdn.weatherapi.com/weather/64x64/day/116.png",
+//             "code": 1003
+//         },
+//         "wind_mph": 4.3,
+//         "wind_kph": 6.8,
+//         "wind_degree": 260,
+//         "wind_dir": "W",
+//         "pressure_mb": 1012.0,
+//         "pressure_in": 29.88,
+//         "precip_mm": 0.0,
+//         "precip_in": 0.0,
+//         "humidity": 94,
+//         "cloud": 75,
+//         "feelslike_c": 17.2,
+//         "feelslike_f": 63.0,
+//         "windchill_c": 18.9,
+//         "windchill_f": 66.0,
+//         "heatindex_c": 18.9,
+//         "heatindex_f": 66.0,
+//         "dewpoint_c": 14.2,
+//         "dewpoint_f": 57.6,
+//         "vis_km": 10.0,
+//         "vis_miles": 6.0,
+//         "uv": 4.0,
+//         "gust_mph": 8.7,
+//         "gust_kph": 14.0,
+//         "air_quality": {
+//             "co": 220.3,
+//             "no2": 15.3,
+//             "o3": 31.1,
+//             "so2": 5.1,
+//             "pm2_5": 1.8,
+//             "pm10": 2.9,
+//             "us-epa-index": 1,
+//             "gb-defra-index": 1
+//         }
+//     }
+// }
+
+
+		// astronomy
+// 		{
+//     "location": {
+//         "name": "London",
+//         "region": "City of London, Greater London",
+//         "country": "United Kingdom",
+//         "lat": 51.52,
+//         "lon": -0.11,
+//         "tz_id": "Europe/London",
+//         "localtime_epoch": 1723612378,
+//         "localtime": "2024-08-14 06:12"
+//     },
+//     "astronomy": {
+//         "astro": {
+//             "sunrise": "05:45 AM",
+//             "sunset": "08:24 PM",
+//             "moonrise": "05:07 PM",
+//             "moonset": "11:49 PM",
+//             "moon_phase": "Waxing Gibbous",
+//             "moon_illumination": 63,
+//             "is_moon_up": 0,
+//             "is_sun_up": 0
+//         }
+//     }
+// }
+
+		const apiKey = '8e935dd02d674fc2ae820750240908';
+		const input = document.querySelector('input');
+		const submitBtn = document.querySelector('.submit');
+		const infos = document.querySelector('.info');
+		
+		function getWeather(location) {
+
+			const currentWeather = fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`).then((response) => {
+				return response.json()
+			})
+			return currentWeather;
+
+			// const forecastWeather = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&aqi=yes`);
+			// const responses = await forecastWeather.json();			
+		}
+
+	  async	function getWeather2(location, date) {
+			const astronomyWeather = await fetch(`http://api.weatherapi.com/v1/astronomy.json?key=${apiKey}&q=${location}&dt=${date}`);
+			const response = await astronomyWeather.json();
+			return response;
+		}
+
+		async function updateWeather() {
+			const currentDate = new Date();
+			const year = currentDate.getFullYear();
+			const month = currentDate.getMonth() + 1;
+			const day = currentDate.getDate();
+			const date = `${year}-${month.toString().padStart(2, '0')}-${day}`;
+			const location = input.value;
+
+			const response = await getWeather(location);
+			const responsess = await getWeather2(location, date);
+
+			infos.innerHTML = `
+				<div>Location: ${response.location.name}</div>
+				<div>Region: ${response.location.region}</div>
+				<div>Country: ${response.location.country}</div>
+				<div>Temperature: ${response.current.temp_c}°C</div>
+				<div>Feels like: ${response.current.feelslike_c}°C</div>
+				<div>Localtime: ${responsess.location.localtime}</div>
+				<div>Wind_kph: ${response.current.wind_kph}</div>
+				<div>Heatindex: ${response.current.heatindex_c}°C</div>
+				<div>Sunrise: ${responsess.astronomy.astro.sunrise}</div>
+			 	<div>Sunset: ${responsess.astronomy.astro.sunset}</div>
+			 	<div>Moonrise: ${responsess.astronomy.astro.moonrise}</div>
+			 	<div>Moonset: ${responsess.astronomy.astro.moonset}</div>
+				<div>Moon_phase: ${responsess.astronomy.astro.moon_phase}</div>
+				<div>Humidity: ${response.current.humidity}</div>
+			`;
+
+		}
+
+		submitBtn.addEventListener('click', updateWeather);
+
+	</script>
+</body>
+</html>
