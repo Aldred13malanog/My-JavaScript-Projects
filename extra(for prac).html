@@ -1,13 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<style>
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodoList</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .todolist {
+      display: grid;
+      grid-template: repeat(auto-fill, 32px) / 200px 150px 100px;
+      gap: 5px 3px;
+    }
+    .list {
+      display: grid;
+      align-items: center;
+      gap: 3px;
+      grid-template-columns: 200px 150px 100px;
+    }
+    input:focus {
+      outline: none;
+    }
+    .addbtn {
+      border: none;
+      background-color: rgb(14, 161, 14);
+      color: white;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .deletebtn {
+      border: none;
+      background-color: rgb(165, 0, 0);
+      color: white;
+      border-radius: 2px;
+      cursor: pointer;
+      padding: 8px;
+    }
+  </style>
 </head>
 <body>
-	
+  <h4>TodoList</h4>
+  <div class="todolist">
+    <input class="todo-input" type="text" placeholder="TodoList">
+    <input class="date" type="date">
+    <button class="addbtn">Add</button>
+    <div class="list"></div>
+  </div>
+  
+  <script>
+    let todoList = [{
+      name: 'Wash dishes',
+      dueDate: '2025-04-08'
+    }];
+  
+    renderTodo();
+
+    function renderTodo() {
+      let todoHTML = '';
+
+      todoList.forEach(lists => {
+        todoHTML += `
+          <div class="todolist-name">${lists.name}</div>
+          <div class="todolist-date">${lists.dueDate}</div>
+          <button class="deletebtn">Delete</button>
+        `;
+      });
+
+      document.querySelector('.list').innerHTML = todoHTML;
+
+      document.querySelectorAll('.deletebtn').forEach((deleteBtn, i) => {
+        deleteBtn.addEventListener('click', () => {
+          todoList.splice(i, 1);
+          renderTodo();
+        });
+      });
+      
+    }
+
+
+    document.querySelector('.addbtn').addEventListener('click', () => {
+      const nameInput = document.querySelector('.todo-input');
+      const dateInput = document.querySelector('.date');
+
+      const name = nameInput.value;
+      const dueDate = dateInput.value;
+
+      todoList.push({
+        name,
+        dueDate
+      });
+
+      nameInput.value = '';
+      dateInput.value = '';
+
+      renderTodo();
+    });
+    
+    
+  </script>
 </body>
 </html>
