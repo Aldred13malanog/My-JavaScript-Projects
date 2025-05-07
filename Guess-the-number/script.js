@@ -145,3 +145,20 @@ document.querySelector('.js-help')
 	.addEventListener('click', () => {
 		heLp();
 	});
+
+//cheat shortcut
+const keysPressed = {};
+
+document.addEventListener('keydown', (event) => {
+    keysPressed[event.key] = true;
+
+    // Check for specific key combinations
+    if (keysPressed['Control'] && event.key === 'i') {
+        // Add your custom logic here
+				console.log(`Answer: ${random} you cheater!`);
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    delete keysPressed[event.key]; // Remove the key from the tracking object
+});
