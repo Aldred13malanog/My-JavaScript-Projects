@@ -30,12 +30,21 @@ function renderCalendar() {
 
 	for (let i = 1; i <= daysInMonth + startDay; i++) {
 		const dayElement = document.createElement('div');
+		dayElement.classList.add('day');
 		if (i > startDay) {
 			dayElement.textContent = i - startDay;
 			if (currentDate.getFullYear() === new Date().getFullYear() && 
 					currentDate.getMonth() === new Date().getMonth() && 
 					i - startDay === new Date().getDate()) {
 						dayElement.classList.add('today');
+			}
+			//event (birthdays, holidays etc...)
+			if (currentDate.getMonth() + 1 == 9 && i - startDay == 13 && currentDate.getFullYear() >= 2006) {
+				const eventDayElement = document.createElement('div');
+				dayElement.classList.add('my-birthday')
+				eventDayElement.classList.add('event');
+				eventDayElement.textContent = "Independence day";
+				dayElement.appendChild(eventDayElement);
 			}
 		}
 		daysContainer.appendChild(dayElement);

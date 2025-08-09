@@ -31,7 +31,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 	grid-template-rows: repeat(6, 50px);
-	& div {
+	& .day {
 		padding: 10px;
 		border-bottom: 1px solid black;
 		border-right: 1px solid black;
@@ -52,4 +52,15 @@ body {
 .today {
 	background-color: #0099ff;
 	color: white;
+}
+.my-birthday {
+	position: relative;
+}
+.event {
+	position: absolute;
+	right: 22%;
+	top: 7px;
+	font-size: 10px;
+	color: #0051ff;
+	width: min-content;
 }
